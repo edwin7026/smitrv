@@ -1,0 +1,4 @@
+# This file populates required pip packages for the framework
+cocotb
+cocotb_test
+pyyaml

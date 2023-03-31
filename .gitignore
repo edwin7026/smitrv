@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / files
+__pycache__/*
+*.py[cod]
+
+# pyenv files
+.python-version
+
+# Build files
+test/sim_build/*
+
+# vscode settings
+.vscode/*
+
+# Logs
+
+# Coverage reports
+
+# Sphinx documentation
+
