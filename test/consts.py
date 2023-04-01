@@ -17,12 +17,14 @@ test_list_path = root_path + '/test/test_list.yaml'
 signals_path = root_path + '/test/signals.yaml'
 
 # Environment variables to be set
+
+# Set this to True if .fst file required for generating
+# the waveform is to be generated
+WAVES = True
+
 cocotb_env = {
     # Add the test modules to PYTHONPATH
     'PYTHONPATH'             : f'${{PYTHONPATH}}:{test_file_dir}',
-
-    # This environment variable generates the .vcd file for generating waveforms
-    'WAVE'                   : '1',
 
     # This 
     'LIBPYTHON_LOC'          : '/snap/gnome-3-38-2004/115/usr/lib/x86_64-linux-gnu/libpython3.8.so',

@@ -28,5 +28,5 @@ def test_runner():
                 extra_env = consts.cocotb_env,
                 work_dir = consts.work_dir,
                 sim_build = consts.sim_build,
-                waves = 1
+                waves = consts.WAVES
             )
