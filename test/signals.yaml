@@ -1,0 +1,7 @@
+adder:
+  inputs:
+    A: A
+    B: B
+  
+  outputs:
+    X: Sum

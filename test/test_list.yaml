@@ -1,0 +1,4 @@
+# This file populates the various tests to be performed
+
+tests:
+  adder: True
