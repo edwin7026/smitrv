@@ -1,7 +1,10 @@
+import os
+
+
 # This file contains important constants for testing
 
 # Absolute path to the src directory
-root_path = '/home/edwin/smitriscv/repos/smitrv/'
+root_path = os.path.abspath(os.path.dirname(__file__) + '/../')
 
 # Important paths
 hardware_path = root_path + '/src/hardware/'
@@ -33,3 +36,6 @@ cocotb_env = {
     'COCOTB_REDUCED_LOG_FMT' : 'FALSE',
     'COCOTB_LOG_LEVEL'       : 'DEBUG'
 }
+
+if __name__ == "__main__":
+    print(root_path)
