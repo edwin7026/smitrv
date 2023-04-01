@@ -8,8 +8,6 @@ This function verilates and runs the various tests provided in module variable
 '''
 def test_runner():
 
-    print(consts.test_file_dir)
-
     # For each module name mentioned in test_list.yaml, if it's set to true
     # it compiles and runs the tests with the corresponding test file
     for module_name, val in utils.load_yaml('./test_list.yaml')['tests'].items():
