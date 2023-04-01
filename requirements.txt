@@ -1,4 +1,4 @@
 # This file populates required pip packages for the framework
-cocotb
-cocotb_test
-pyyaml
+cocotb == 1.7.2
+cocotb_test == 0.2.4
+pyyaml == 6.0
