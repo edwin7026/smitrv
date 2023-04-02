@@ -1,3 +1,11 @@
+# If the first argument is "run"...
+ifeq (show_waveform,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  MODULE := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(MODULE):;@:)
+endif
+
 # This command compiles and runs the cocotb based test
 .PHONY: cocotb_run
 cocotb_run:
@@ -7,7 +15,7 @@ cocotb_run:
 # waveforms
 .PHONY: show_waveform
 show_waveform:
-	gtkwave sim_build/dump.fst
+	gtkwave sim_build/${MODULE}/dump.fst
 
 # This command simply removes the sim_build folder
 .PHONY: clean
