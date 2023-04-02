@@ -1,7 +1,8 @@
 adder:
   inputs:
-    A: A
-    B: B
-  
+    clk: CLK
+    A: input1
+    B: input2
+
   outputs:
-    X: Sum
+    X: sum
