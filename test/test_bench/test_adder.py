@@ -1,7 +1,6 @@
 import cocotb
 from cocotb.triggers import Timer
-import utils
-import test_utils
+from test_bench.test_utils import get_signals
 
 # Import the model
 from adder_model import adder_model
@@ -30,7 +29,7 @@ class test_module:
 
     def __init__(self, dut):
         self.dut = dut
-        self.input_signals = test_utils.get_signals('adder', 'inputs')
+        self.input_signals = get_signals('adder', 'inputs')
 
     async def set_input(self, input_dict: dict):
         # For iteration
@@ -64,7 +63,7 @@ class test_module:
     # This function can be used to populate with lambdas for assertions
     # The assertions can be module level or pertaining to internal elements
     def checker(self) -> bool:
-        pass
+        return True
 
     # This function massages output of the module to be like the model
     def module_out(self) -> bool:
