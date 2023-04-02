@@ -2,11 +2,33 @@
 # module level verification. We consider this to be a reference model
 
 '''
-Adder model
+Clock enabled adder model
 Arguments:
     A (int), B(int) : Inputs to the adder
 Returns
     (int)           : Sum of A and B
 '''
-def adder_model(A: int, B: int) -> int:
-    return A + B
+def adder_model(CLK: bool, A: int, B: int) -> int:
+    try:
+        if adder_model.clk < CLK:   # positive edge
+            adder_model.sum = A + B
+            return adder_model.sum
+        else:
+            return adder_model.sum
+    except AttributeError:          # initial run
+        adder_model.clk = CLK
+        adder_model.sum = 0
+        return 0
+
+# Module debugging
+if __name__ == '__main__':
+
+    # Model testing
+
+    print(adder_model(0, 3, 4))
+    print(adder_model(0, 3, 4))
+    print(adder_model(0, 3, 4))
+    print(adder_model(1, 3, 4))
+    print(adder_model(1, 3, 4))
+    print(adder_model(0, 4, 4))
+    print(adder_model(1, 4, 4))
