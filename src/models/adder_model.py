@@ -19,7 +19,7 @@ def adder_model(CLK: bool, A: int, B: int) -> int:
     except AttributeError:          # initial run
         adder_model.clk = CLK
         adder_model.sum = 0
-        return sum
+        return adder_model.sum
 
 # Module debugging
 if __name__ == '__main__':
