@@ -14,7 +14,7 @@ Every sufficiently complicated module must have a corresponding model.
 The python version used through the testing of the framework is `3.10.0`
 
 - Verilator is the prefered simulator. NOTE: The framework is compatible with Verilator version `4.106` only. Any later or earlier versions are incompatible. Verilator can be installed by following the guidelines [here](https://verilator.org/guide/latest/install.html#detailed-build-instructions).
-- The testing framework is based on [Cocotb](https://docs.cocotb.org/en/stable/index.html). The following command will install the required pip packages. In the `test/` directory, run:
+- The testing framework is based on [Cocotb](https://docs.cocotb.org/en/stable/index.html). The following command will install the required pip packages. In the root directory of the repository, run:
 
         $ pip install -r requirements.txt
 
