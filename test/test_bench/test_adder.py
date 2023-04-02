@@ -62,7 +62,6 @@ class test_module:
 
             # Model compare statements
             hardware_output = self.module_out()
-            print(curr_input)
             model_output = adder_model(self.dut.CLK.value, **curr_input)
             assert hardware_output == model_output, f'HDL-Model output mismatch!\nHardware output: {hardware_output}\nModel output: {bin(model_output)}\n'
 
@@ -92,8 +91,8 @@ async def test_top(dut):
 
     # Input signals
     sig_val = {
-        'A' : [1, 2, 3],
-        'B' : [4, 5, 6]
+        'A' : [1, 2, 3, 2, 5],
+        'B' : [4, 5, 6, 1, 8]
     }
     
     # Automate inputs setting and run tests
