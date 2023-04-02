@@ -5,6 +5,7 @@
 Clock enabled adder model
 Arguments:
     A (int), B(int) : Inputs to the adder
+    CLK (bool)      ; Clock Pulse
 Returns
     (int)           : Sum of A and B
 '''
@@ -18,7 +19,7 @@ def adder_model(CLK: bool, A: int, B: int) -> int:
     except AttributeError:          # initial run
         adder_model.clk = CLK
         adder_model.sum = 0
-        return 0
+        return sum
 
 # Module debugging
 if __name__ == '__main__':
