@@ -22,7 +22,7 @@ async def generate_clock(sim_len, dut):
 class test_module:
 
     # Sim length
-    SIM_NUM_CYCLES = 30
+    SIM_NUM_CYCLES = 100
 
     # Set the module name found in signals.yaml here
     name = 'adder'
@@ -32,33 +32,42 @@ class test_module:
         self.input_signals = get_signals('adder', 'inputs')
 
     async def set_input(self, input_dict: dict):
-        # For iteration
-        i = 0
-    
         # Holds the current input to the model
         curr_input = dict()
-
+        
+        # Calculate longest input string
+        max_len = 0
+        for values in input_dict.values():
+            temp = len(values)
+            if  temp > max_len:
+                max_len = temp
+        
         # We set the input to the module defined by the
         # input_dict dictionary. The inputs is stored in order
         # to pass to the model for comparison
-        for values in input_dict.values():
+        for i in range(max_len):
             for sig in input_dict.keys():
-                if i < len(values):
+                vals = input_dict[sig]
+                if i <= len(vals):
                     # Execute the following expression
-                    exec(f'self.dut.{self.input_signals[sig]}.value = {values[i]}')
+                    exec(f'self.dut.{self.input_signals[sig]}.value = {vals[i]}')
                     # Retrieves the current input to be passed to the model
-                    curr_input[sig] = values[i]
+                    curr_input[sig] = vals[i]
 
             # Additional conditions to be checked
             assert self.checker(), 'Checker failed!'
-            
-            # Model compare statements
-            assert self.module_out() == adder_model(self.dut.CLK.value, **curr_input), 'HDL-Model output mismatch!'
-            
-            # Await till some time before next input is fed
-            await Timer(1, units='ns')
 
-            i = i + 1               # increment value index
+            # Await till some time for probing (sanity incrementation)
+            await Timer(0.5, units='ns')
+
+            # Model compare statements
+            hardware_output = self.module_out()
+            print(curr_input)
+            model_output = adder_model(self.dut.CLK.value, **curr_input)
+            assert hardware_output == model_output, f'HDL-Model output mismatch!\nHardware output: {hardware_output}\nModel output: {bin(model_output)}\n'
+
+            # Await till some time before next input is fed
+            await Timer(0.5, units='ns')
     
     # This function can be used to populate with lambdas for assertions
     # The assertions can be module level or pertaining to internal elements
@@ -84,8 +93,11 @@ async def test_top(dut):
     # Input signals
     sig_val = {
         'A' : [1, 2, 3],
-        'B' : [1, 2, 3]
+        'B' : [4, 5, 6]
     }
     
     # Automate inputs setting and run tests
     await cocotb.start(sig.set_input(sig_val))
+
+    # await till the simulation finishes
+    await Timer(2 * test_module.SIM_NUM_CYCLES, units='ns')

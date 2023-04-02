@@ -11,7 +11,7 @@ Returns
 '''
 def adder_model(CLK: bool, A: int, B: int) -> int:
     try:
-        if adder_model.clk < CLK:   # positive edge
+        if adder_model.clk == 0 and CLK == 1:   # positive edge
             adder_model.sum = A + B
             return adder_model.sum
         else:
@@ -26,8 +26,8 @@ if __name__ == '__main__':
 
     # Model testing
 
-    print(adder_model(0, 3, 4))
-    print(adder_model(0, 3, 4))
+    print(adder_model(0, 1, 4))
+    print(adder_model(1, 1, 4))
     print(adder_model(0, 3, 4))
     print(adder_model(1, 3, 4))
     print(adder_model(1, 3, 4))
