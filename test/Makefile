@@ -9,7 +9,7 @@ endif
 # This command compiles and runs the cocotb based test
 .PHONY: cocotb_run
 cocotb_run:
-	python -c 'import test_facility; print(test_facility.test_runner())'
+	python -c 'import test_facility; test_facility.test_runner()'
 
 # This command invokes gtkwave and passes the dump.fst file to generate the
 # waveforms
