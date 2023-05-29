@@ -8,7 +8,7 @@ In this repository, we will design an instruction fetch unit with the help of ve
 
 ## Deployment
 
-To deploy this project first download the repository and navigate to the folder via VsCode.
+To deploy this project first clone the repository and navigate to the folder via VsCode.
 
 Make sure you have Icarus Verilog installed as your verilog simulator.
 
